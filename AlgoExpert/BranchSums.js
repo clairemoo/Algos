@@ -1,0 +1,29 @@
+class BinaryTree {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+  }
+  
+  function branchSums(root) {
+      const sums = [];
+      calculateBranchSum(root, 0, sums);
+      return sums;
+  }
+  
+  function calculateBranchSum(node, runningSum, sums) {
+      if (!node) {
+          return;
+      }
+      
+      const newRunningSum = runningSum + node.value;
+      if (!node.right && !node.left) {
+          sums.push(newRunningSum);
+          return;
+      }
+      
+      calculateBranchSum(node.left, newRunningSum, sums);
+      calculateBranchSum(node.right, newRunningSum, sums)
+  }
+  
